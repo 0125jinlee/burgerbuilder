@@ -41,7 +41,7 @@ const input = (props) => {
       break;
     default:
       inputElement = <input
-        className={classes.InputElement}
+        className={inputClasses.join(' ')}
         {...props.elementConfig}
         value={props.value}
         onChange={props.changed} />;

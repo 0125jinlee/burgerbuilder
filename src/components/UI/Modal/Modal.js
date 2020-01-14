@@ -10,9 +10,9 @@ class Modal extends Component {
       return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
   }
 
-  // componentWillUpdate () {
-  //   console.log('[Modal] WillUpdate');
-  // } UNSAFE LEGACY COMPONENT LIFECYCLES
+  componentWillUpdate () {
+    console.log('[Modal] WillUpdate');
+  }
   
   render () {
     return (
@@ -21,7 +21,7 @@ class Modal extends Component {
         <div 
           className={classes.Modal}
           style={{
-            transform: this.props.show ? 'translateY(0)' : 'translateY(-100%)',
+            transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
             opacity: this.props.show ? '1' : '0'
           }}>
           {this.props.children}
