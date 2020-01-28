@@ -13,20 +13,17 @@ const orders = props => {
   }, []);
 
   let orders = <Spinner />;
-    if (!props.loading) {
-      orders = props.orders.map(order => (
-        <Order
-          key={order.id}
-          ingredients={order.ingredients}
-          price={order.price} />
-      ))
-    };
-  return (
-    <div>
-      {orders}
-    </div>
-  );
-}
+  if (!props.loading) {
+    orders = props.orders.map(order => (
+      <Order
+        key={order.id}
+        ingredients={order.ingredients}
+        price={order.price}
+      />
+    ));
+  }
+  return <div>{orders}</div>;
+};
 
 const mapStateToProps = state => {
   return {
@@ -35,12 +32,16 @@ const mapStateToProps = state => {
     token: state.auth.token,
     userId: state.auth.userId
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId))
+    onFetchOrders: (token, userId) =>
+      dispatch(actions.fetchOrders(token, userId))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(orders, axios));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(orders, axios));
